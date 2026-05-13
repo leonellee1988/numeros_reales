@@ -29,6 +29,216 @@
 
 \section{Axiomas de campo}
 
+Los números reales, junto con las operaciones de \textbf{suma} ($+$) y \textbf{multiplicación} ($\times$), satisfacen una serie de propiedades conocidas como \textbf{axiomas de campo}. Estas son la definición formal de por qué el álgebra funciona.
 
+\subsection{Axiomas de adición}
+
+\begin{itemize}
+    \item \textbf{Clausura:} Si $a, b \in \mathbb{R}$, entonces $a + b \in \mathbb{R}$.
+    \item \textbf{Asociativa:} Sean $a, b, c \in \mathbb{R}$, se tiene que $(a + b) + c = a + (b + c)$.
+    \item \textbf{Conmutativa:} Sean $a, b \in \mathbb{R}$ se cumple que $a + b = b + a$.
+    \item \textbf{Elemento neutro:} Existe un elemento $0 \in \mathbb{R}$, tal que $a + 0 = a, \ \forall a \in \mathbb{R}$.
+    \item \textbf{Elemento inverso:} Para cada $a \in \mathbb{R}$, existe un elemento $-a \in \mathbb{R}$, tal que $a + (-a) = 0$. 
+\end{itemize}
+
+\subsection{Axiomas de multiplicación}
+
+\begin{itemize}
+    \item \textbf{Clausura:} Si $a, b \in \mathbb{R}$, entonces $a \times b \in \mathbb{R}$.
+    \item \textbf{Asociativa:} Sean $a, b, c \in \mathbb{R}$, se tiene que $(a \times b) \times c = a \times (b \times c)$.
+    \item \textbf{Conmutativa:} Sean $a, b \in \mathbb{R}$ se cumple que $a \times b = b \times a$.
+    \item \textbf{Elemento neutro:} Existe un elemento $1 \in \mathbb{R}$, tal que $a \times 1 = a, \ \forall a \in \mathbb{R}$.
+    \item \textbf{Elemento inverso:} Para cada $a \in \mathbb{R}$, con $a \neq 0$, existe un elemento $a^{-1} \in \mathbb{R}$, tal que $a \times a^{-1} = 1$. 
+\end{itemize}
+
+\textbf{Axioma distributivo:} Sean $a, b, c \in \mathbb{R}$, se tiene que $a \times (b + c) = (a \times b) + (a \times c)$.
+
+\textit{Ejemplo:}
+
+Demostrar que si $a + b = a$, entonces $b = 0$
+
+Sumar \textbf{inverso aditivo} en ambos lados de la ecuación:
+
+$(a + b) + (-a) = a + (-a)$
+
+Por \textbf{asociatividad} y \textbf{conmutatividad} se tiene que:
+
+$(a + (-a)) + b = a + (-a)$
+
+
+Por axioma de \textbf{inverso aditivo} se tiene:
+
+$0 + b = 0$
+
+Finalmente, por axioma de \textbf{neutro aditivo} se obtiene que:
+
+$b = 0$ $\qed$
+
+\textit{Ejemplo:}
+
+Demostrar que el \textbf{neutro aditivo} es único.
+
+Suponer que existe otro neutro aditivo $0' \in \mathbb{R}$, tal que $0 \neq 0'$.
+
+Por axioma de \textbf{neutro aditivo} se tiene:
+
+$0 + 0' = 0$
+
+Pero como $0$ también es neutro aditivo, aplica nuevamente el axioma de \textbf{neutro aditivo}:
+
+$0' + 0 = 0'$
+
+Por axioma \textbf{conmutativo} se sabe:
+
+$0 + 0' = 0' + 0 \implies 0 = 0'$
+
+Se ha llegado a una \textbf{contradicción}, por lo tanto, la proposición sobre que existe otro neutro aditivo es falso.
+
+$\qed$
+
+\textit{Ejemplo:}
+
+Demostrar que el \textbf{neutro multiplicativo} es único.
+
+Suponer que existe otro neutro multiplicativo $1' \in \mathbb{R}$, tal que $1' \neq 1$.
+
+Por axioma de \textbf{neutro multiplicativo} se tiene que:
+
+$1 \times 1' = 1$
+
+Pero como $1$ también es neutro multiplicativo, se aplica el axioma de \textbf{neutro multiplicativo}:
+
+$1' \times 1 = 1'$
+
+Por axioma \textbf{conmutativo} se tiene:
+
+$1 \times 1' = 1' \times 1 \implies 1 = 1'$
+
+Esto es una \textbf{contradicción}, entonces, la proposición inicial sobre que existe otro neutro multiplicativo no es verdadero.
+
+$\qed$
+
+\section{Axiomas de orden}
+
+\begin{itemize}
+    \item \textbf{Tricotomía:} Para cualquiera $a, b \in \mathbb{R}$, solo una de las siguientes proposiciones es verdadera: 
+    
+    $a < b$, $a > b$ o $a = b$.
+    \item \textbf{Transitividad:} Sean $a, b, c \in \mathbb{R}$, si $a < b$ y $b < c$, entonces $a < c$.
+    \item \textbf{Compatibilidad con la adición:} Sean $a, b, c \in \mathbb{R}$, si $a < b$, entonces $a + c < b + c$, para cualquier $c$.
+    \item \textbf{Compatibilidad con el producto:} Para $a, b, c \in \mathbb{R}$, si $a < b$ y $c > 0$ se tiene que $a \times c < b \times c$, para cualquier $c$.
+\end{itemize}
+
+A partir de estos axiomas, se definen los \textbf{intervalos}, que serán fundamentales en Cálculo para definir dominios y rangos:
+
+\begin{itemize}
+    \item \textbf{Abierto:} $(a, b) = \{x \mid a < x < b\}$
+    \item \textbf{Cerrado:} $[a, b] = \{x \mid a \le x \le b\}$
+    \item \textbf{Semiabiertos:} $(a, b] = \{x \mid a < x \le b\}$
+    \item \textbf{Infinitos:} $(a, \infty)$ y $(-\infty, b)$
+\end{itemize}
+
+\section{Valor absoluto y recta real}
+
+El valor absoluto es una \textbf{función} que mide la distancia.
+
+\textbf{Definición formal:}
+
+\[ 
+\mid x \mid =  
+\begin{cases}
+    x \text{ si } x \ge 0 \\
+    -x \text{ si } x < 0    
+\end{cases}
+\]
+
+\textbf{Interpretación geométrica:}
+
+$\mid x \mid$ es la distancia entre el punto $x$ y el origen $0$ en la recta real.
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[extended line/.style={shorten >=-#1,shorten <=-#1},
+                        extended line/.default=1cm]
+        % Dibujo de la recta numérica
+        \draw[latex-latex, thick] (-4,0) -- (4,0) node[right] {$\mathbb{R}$};
+        % Marcas principales: 0 y x
+        \draw[shift={(0,0)}, thick] (0pt,3pt) -- (0pt,-3pt) node[below] {$0$};
+        \draw[shift={(2.5,0)}, thick] (0pt,3pt) -- (0pt,-3pt) node[below] {$x$};
+        \draw[shift={(-2.5,0)}, thick] (0pt,3pt) -- (0pt,-3pt) node[below] {$-x$};
+        % Representación de la distancia |x| (derecha)
+        \draw[|<->|, blue, thick] (0,0.5) -- (2.5,0.5) node[midway, above] {$|x|$};
+        % Representación de la distancia |x| (izquierda) para mayor claridad
+        \draw[|<->|, red, thick] (0,0.8) -- (-2.5,0.8) node[midway, above] {$|x|$};
+        % Puntos destacados
+        \filldraw[black] (0,0) circle (2pt);
+        \filldraw[black] (2.5,0) circle (2pt);
+        \filldraw[black] (-2.5,0) circle (2pt);
+    \end{tikzpicture}
+    \caption{Interpretación geométrica del valor absoluto como distancia al origen.}
+\end{figure}
+
+Más generalmente, $\mid x - a \mid$ es la distancia entre $x$ y $a$.
+
+\textbf{Propiedades:}
+
+\begin{itemize}
+    \item $\mid x \mid \ge 0$, para todo $x \in \mathbb{R}$ y $\mid x \mid = 0 \iff x = 0$.
+    \item $\mid x \times y \mid = \mid x \mid \times \mid y \mid$.
+    \item \textbf{Desigualdad triangular:} $\mid x + y \mid \le \mid x \mid + \mid y \mid$.
+    \item $\mid x \mid < a \iff -a < x < a$.
+    \item $\mid x \mid > a \iff x > a \lor x < -a$.
+\end{itemize}
+
+\textit{Ejemplo:}
+
+Demostrar que $\mid x + y \mid \le \mid x \mid + \mid y \mid$
+
+\underline{Caso No. 1:}
+
+Se supondrá que $x, y \in \mathbb{R}^+$.
+
+Por definición de \textbf{valor absoluto} se tiene que:
+
+$\mid x + y \mid = x + y$
+
+$\mid x \mid = x \ \land \ \mid y \mid = y \implies \mid x \mid + \mid y \mid = x + y$
+
+Por lo tanto:
+
+$\mid x + y \mid = \mid x \mid + \mid y \mid$
+
+\underline{Caso No. 2:}
+
+Suponer que $x, y \in \mathbb{R}^-$.
+
+Por la definición de \textbf{valor absoluto} se tiene:
+
+$\mid x + y \mid = -(x + y) = - x - y$
+
+$\mid x \mid = - x \ \land \ \mid y \mid = - y \implies \mid x \mid + \mid y \mid = - x + (- y) = - x - y$
+
+Entonces, se concluye que:
+
+$\mid x + y \mid = \mid x \mid + \mid y \mid$
+
+\newpage
+\underline{Caso No. 3:}
+
+Se supone que $x \in \mathbb{R}^+$ y $y \in \mathbb{R}^-$ (o viceversa).
+
+Por la definición de \textbf{valor absoluto} se sabe que:
+
+$\mid x \mid = x \ \land \mid y \mid = - y$, donde $x, -y \in \mathbb{R}^+$.
+
+Implica que $x + (-y) = \mid x \mid + \mid y \mid$ representa una \textbf{suma} entre $x$ y $y$.
+
+Luego, se pueden considerar dos posibles escenarios:
+
+a) Si $x + y > 0 \implies \mid x + y \mid = x + y$, como $x$ es positivo y $y$ es negativo, $x + y$ representa una \textbf{resta} entre ambos, entonces $x + y = \mid x + y \mid < x + (-y) = \mid x \mid + \mid y \mid$.
+
+b) Si $x + y < 0 \implies \mid x + y \mid = - (x + y) = - x - y$, como $x$ es positivo y $y$ negativo, se sabe que $- x - y$ representa una \textbf{resta}, por lo tanto, $- x - y = \mid x + y \mid < x + (-y) = \mid x \mid + \mid y \mid$.
+
+$\qed$
 
 \end{document}
