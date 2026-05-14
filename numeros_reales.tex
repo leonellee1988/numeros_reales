@@ -182,13 +182,13 @@ Más generalmente, $\mid x - a \mid$ es la distancia entre $x$ y $a$.
 
 \textbf{Propiedades:}
 
-\begin{itemize}
+\begin{enumerate}
     \item $\mid x \mid \ge 0$, para todo $x \in \mathbb{R}$ y $\mid x \mid = 0 \iff x = 0$.
     \item $\mid x \times y \mid = \mid x \mid \times \mid y \mid$.
     \item \textbf{Desigualdad triangular:} $\mid x + y \mid \le \mid x \mid + \mid y \mid$.
     \item $\mid x \mid < a \iff -a < x < a$.
     \item $\mid x \mid > a \iff x > a \lor x < -a$.
-\end{itemize}
+\end{enumerate}
 
 \textit{Ejemplo:}
 
@@ -196,48 +196,286 @@ Demostrar que $\mid x + y \mid \le \mid x \mid + \mid y \mid$
 
 \underline{Caso No. 1:}
 
-Se supondrá que $x, y \in \mathbb{R}^+$.
+Se supondrá que $x, y \ge 0$
 
-Por definición de \textbf{valor absoluto} se tiene que:
+Por definición de \textbf{valor absoluto} se sabe:
 
 $\mid x + y \mid = x + y$
 
-$\mid x \mid = x \ \land \ \mid y \mid = y \implies \mid x \mid + \mid y \mid = x + y$
+$\mid x \mid = x \ \land \  \mid y \mid = y \implies \mid x \mid + \mid y \mid = x + y$
 
-Por lo tanto:
+Implica que: 
 
 $\mid x + y \mid = \mid x \mid + \mid y \mid$
 
 \underline{Caso No. 2:}
 
-Suponer que $x, y \in \mathbb{R}^-$.
+Suponer que $x, y < 0$
 
-Por la definición de \textbf{valor absoluto} se tiene:
+Nuevamente, por definición de \textbf{valor absoluto} se tiene que:
 
-$\mid x + y \mid = -(x + y) = - x - y$
+$\mid x + y \mid = - (x + y) = - x - y$
 
-$\mid x \mid = - x \ \land \ \mid y \mid = - y \implies \mid x \mid + \mid y \mid = - x + (- y) = - x - y$
+$\mid x \mid = - x \ \land \ \mid y \mid = - y \implies \mid x \mid + \mid y \mid = - x - y$
 
-Entonces, se concluye que:
+Por lo tanto: 
 
 $\mid x + y \mid = \mid x \mid + \mid y \mid$
 
-\newpage
 \underline{Caso No. 3:}
 
-Se supone que $x \in \mathbb{R}^+$ y $y \in \mathbb{R}^-$ (o viceversa).
+Se supone que $x \ge 0$ y $y < 0$ (o viceversa).
 
-Por la definición de \textbf{valor absoluto} se sabe que:
+Se pueden dar dos escenarios posibles:
 
-$\mid x \mid = x \ \land \mid y \mid = - y$, donde $x, -y \in \mathbb{R}^+$.
+a) Si $x + y > 0$
 
-Implica que $x + (-y) = \mid x \mid + \mid y \mid$ representa una \textbf{suma} entre $x$ y $y$.
+Por definición de \textbf{valor absoluto} se tiene:
 
-Luego, se pueden considerar dos posibles escenarios:
+$\mid x + y \mid = x + y$
 
-a) Si $x + y > 0 \implies \mid x + y \mid = x + y$, como $x$ es positivo y $y$ es negativo, $x + y$ representa una \textbf{resta} entre ambos, entonces $x + y = \mid x + y \mid < x + (-y) = \mid x \mid + \mid y \mid$.
+$\mid x \mid = x \ \land \ \mid y \mid = - y \implies \mid x \mid + \mid y \mid = x + (- y)$
 
-b) Si $x + y < 0 \implies \mid x + y \mid = - (x + y) = - x - y$, como $x$ es positivo y $y$ negativo, se sabe que $- x - y$ representa una \textbf{resta}, por lo tanto, $- x - y = \mid x + y \mid < x + (-y) = \mid x \mid + \mid y \mid$.
+Como $y < 0 \implies -y > 0 \implies y < - y$
+
+Sumar $x$ en ambos lados de la desigualdad:
+
+$x + y < x + (- y) \implies \mid x + y \mid < \mid x \mid + \mid y \mid$
+
+b) Si $x + y < 0$
+
+Otra vez, por definición de \textbf{valor absoluto} se obtienen los siguientes resultados:
+
+$\mid x + y \mid = -(x + y) = - x - y$
+
+Ya se sabe que $\mid x \mid + \mid y \mid = x + (- y)$
+
+Como $x \ge 0 \implies -x \le 0 \implies -x \le x$
+
+Sumar $- y$ en ambos lados de la desigualdad:
+
+$- x - y \le x + (-y)$
+
+La única manera que se de $- x - y = x + (- y)$, es que $y = 0$, pero se sabe que $y < 0$, por lo tanto:
+
+$- x - y < x + (-y)$
+
+$\qed$
+
+\textit{Ejemplo:}
+
+Generar la demostración para $\mid x \mid < a \iff - a < x < a$
+
+$(\implies)$ PD: $\mid x \mid \ < a \implies -a < x < a$
+
+Se pueden dar dos posibles casos:
+
+a) Si $x \ge 0 \implies \mid x \mid = x$
+
+Entonces:
+
+$\mid x \mid < a \implies x < a$
+
+Como $x \ge 0 \ \land \ x < a \implies a > 0 \implies -a < 0$
+
+Por lo tanto:
+
+$\mid x \mid < a \implies - a < x < a$
+
+b) Si $x < 0 \implies \mid x \mid = - x$
+
+Se tiene que:
+
+$\mid x \mid < a \implies - x < a$
+
+Como $x < 0 \implies - x > 0$, además se sabe que $- x < a \implies a > 0 \implies x < a$.
+
+Sumar $x$ a la desigualdad $- x < a$:
+
+$- x + x < a + x $
+
+Por axioma de \textbf{inverso aditivo} se obtiene:
+
+$0 < a + x$
+
+Sumar $- a$ a la nueva desigualdad:
+
+$0 + (-a) < (a + x) + (-a)$
+
+Por axiomas \textbf{conmutativo} y \textbf{asociativo} se obtiene:
+
+$0 + (-a) < (a + -(a)) + x$
+
+Por axiomas de \textbf{inverso y neutro aditivo} se logra:
+
+$-a < x$
+
+Por lo tanto:
+
+$\mid x \mid < a \implies -a < x < a$
+
+$(\impliedby)$ PD: $-a <  x  < a \implies \mid x \mid < a$
+
+Se consideran dos escenarios:
+
+a) Si $x \ge 0 \implies \mid x \mid = x$
+
+Como $x \ge 0 \ \land \ x < a \implies a > 0 \implies - a < 0$
+
+Se cumple $-a < x < a \implies \mid x \mid < a$
+
+b) Si $x < 0 \implies \mid x \mid = - x > 0$
+
+Se sabe que $-a < x$, sumar $a$ a la desigualdad:
+
+$- a + a < x + a$
+
+Por axioma de \textbf{inverso aditivo} se tiene:
+
+$0 < x + a$, luego sumar $-x$ a la desigualdad:
+
+$0 + (-x) < (x + a) + (-x)$
+
+Por axiomas \textbf{asociativo} y \textbf{conmutativo} se puede operar:
+
+$0 + (-x) < (x + (-x)) + a$
+
+Por axiomas de \textbf{inverso y neutro aditivo} se obtiene:
+
+$- x < a \implies \mid x \mid < a$
+
+$\qed$
+
+\textit{Ejemplo:}
+
+Demostrar que $\mid x \mid > a \iff x > a \ \lor \ x < - a$
+
+$(\implies)$ PD: Si $\mid x \mid > a \implies x > a \ \lor \ x < -a$
+
+\underline{Caso No. 1:}
+
+Si $x \ge 0 \implies \mid x \mid = x$
+
+Entonces, se tiene $\mid x \mid > a \implies x > a$
+
+\underline{Caso No. 2:}
+
+Si $x < 0 \implies \mid x \mid = - x$
+
+Se tiene que $\mid x \mid > a \implies -x > a$
+
+Sumar $x$ en la desigualdad:
+
+$- x + x > a + x$
+
+Por axioma de \textbf{inverso aditivo} se tiene:
+
+$0 > x + a$
+
+Se suma $- a$ en la nueva desigualdad:
+
+$0 + (-a) > (x + a) + (-a)$
+
+Se aplica axiomas \textbf{conmutativo} y \textbf{asociativo}:
+
+$0 + (-a) > (a + (-a)) + x$
+
+Por axioma de \textbf{inverso aditivo} se obtiene:
+
+$-a > x \implies x < -a$
+
+$(\impliedby)$ PD: si $x > a \ \lor \ x < - a \implies \mid x \mid > a$
+
+\underline{Caso No. 1:}
+
+Si $x \ge 0 \implies \mid x \mid = x$
+
+Como $x > a \implies \mid x \mid > a$
+
+\underline{Caso No. 2:}
+
+Si $x < 0 \implies \mid x \mid = -x$
+
+Como $x < - a$, sumar $- x$ a la desigualdad:
+
+$x + (-x) < - a + (-x)$
+
+Aplicar axioma de \text{inverso aditivo}:
+
+$0 < -a + (-x)$
+
+Sumar $a$ a la nueva desigualdad:
+
+$0 + a < (-a + (-x)) + a$
+
+Por axiomas \textbf{asociativo} y  \textbf{conmutativo} se tiene:
+
+$0 + a < (-a + a) + (-x)$
+
+Se aplican los axiomas de \textbf{inverso y neutro aditivo}:
+
+$a < - x \implies -x > a \implies \mid x \mid > a$
+
+$\qed$
+
+\section{Desigualdades con valor absoluto}
+
+El valor absoluto no permite resolver dos tipos fundamentales de desigualdades, que aparecen al calcular límites, especialmente los \textbf{límites epsilon-delta}:
+
+\begin{itemize}
+    \item Desigualdad de la forma $\mid x - a \mid < c$
+    \begin{itemize}
+        \item Significado geométrico: La distancia entre $x$ y $a$ es menor que $c$.
+        \item Solución: Se tiene que $\mid x - a \mid < c \implies -c < x - a < c$.
+    \end{itemize}
+    \item Desigualdad de la forma $\mid x - a \mid > c$
+    \begin{itemize}
+        \item Significado geométrico: La distancia entre $x$ y $a$ es mayor que $c$.
+        \item Solución: Se tiene $\mid x - a \mid > c \implies (x - a) > c \ \lor \ (x - a) < - c$.
+    \end{itemize}
+\end{itemize}
+
+\section{Problemas aplicados}
+
+\textbf{1. Análisis de errores en punto flotante:} En computación, los números reales se aproximan usando un sistema de punto flotante debido a las limitaciones físicas de la memoria. Si $x$ es el valor real exacto y $\hat{x}$ es el valor aproximado almacenado en memoria, el \textbf{error relativo} está acotado superiormente por una máquina epsilon $(\epsilon > 0)$ mediante la siguiente desigualdad:
+
+$\displaystyle \left| \frac{x - \hat{x}}{x} \right| < \epsilon \text{ con } x \neq 0$
+
+Utilizando las propiedades de valor absoluto y los axiomas de orden, demostrar que el valor aproximado $\hat{x}$ se encuentra obligatoriamente confinado dentro del intervalo abierto:
+
+$\Big(x(1 - \epsilon), x(1 + \epsilon)\Big) \text{ para el caso que } x > 0$
+
+Dada la desigualdad $\displaystyle \left| \frac{x - \hat{x}}{x} \right| < \epsilon$, por propiedad (4) de \textbf{valor absoluto} se tiene:
+
+$\displaystyle \left| \frac{x - \hat{x}}{x} \right| < \epsilon \implies -\epsilon < \frac{x - \hat{x}}{x} < \epsilon$
+
+Multiplicar la desigualdad por $x$:
+
+$\displaystyle -\epsilon(x) < \frac{x - \hat{x}}{x} \times x < \epsilon(x) \implies -\epsilon(x) < x - \hat{x} < \epsilon(x)$
+
+Sumar $- x $ a la nueva desigualdad:
+
+$-\epsilon(x) + (- x) < (x - \hat{x}) + (- x) < \epsilon(x) + (-x)$
+
+Se aplican axiomas \textbf{asociativo} y \textbf{conmutativo}:
+
+$(- x) -\epsilon(x) < (x + (- x)) - \hat{x} < (-x) + \epsilon(x)$
+
+Mediante axioma de \textbf{inverso aditivo} se obtiene:
+
+$(- x) -\epsilon(x) < - \hat{x} < (-x) + \epsilon(x)$
+
+Multiplicar $-1$ a la desigualdad actual:
+
+$-1 ((- x) -\epsilon(x)) < -1 (- \hat{x}) < -1 ((-x) + \epsilon(x))$
+
+Recordar que al multiplicar por un número negativo, cambia el sentido de la desigualdad:
+
+$x + \epsilon(x) > \hat{x} > x - \epsilon(x) \implies x - \epsilon(x) < \hat{x} < x + \epsilon(x)$
+
+Se aplica \textbf{factor común}:
+
+$x(1 - \epsilon) < \hat{x} < x(1 + \epsilon)$
 
 $\qed$
 
