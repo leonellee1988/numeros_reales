@@ -23,6 +23,12 @@
 \usepackage{tikz}
 \usetikzlibrary{patterns}
 
+% Nota
+\usepackage[framemethod=default]{mdframed}
+\newenvironment{nota_computacional}
+  {\begin{mdframed}[backgroundcolor=gray!10, linecolor=gray!40, roundcorner=5pt, skipabove=10pt, skipbelow=10pt]}
+  {\end{mdframed}}
+
 % --- Inicio del documento ---
 \begin{document}
 \maketitle
@@ -126,7 +132,7 @@ $\qed$
     $a < b$, $a > b$ o $a = b$.
     \item \textbf{Transitividad:} Sean $a, b, c \in \mathbb{R}$, si $a < b$ y $b < c$, entonces $a < c$.
     \item \textbf{Compatibilidad con la adición:} Sean $a, b, c \in \mathbb{R}$, si $a < b$, entonces $a + c < b + c$, para cualquier $c$.
-    \item \textbf{Compatibilidad con el producto:} Para $a, b, c \in \mathbb{R}$, si $a < b$ y $c > 0$ se tiene que $a \times c < b \times c$, para cualquier $c$.
+    \item \textbf{Compatibilidad con el producto:} Para $a, b, c \in \mathbb{R}$, si $a < b$ y $c > 0$ se tiene que $a \times c < b \times c$.
 \end{itemize}
 
 A partir de estos axiomas, se definen los \textbf{intervalos}, que serán fundamentales en Cálculo para definir dominios y rangos:
@@ -479,4 +485,210 @@ $x(1 - \epsilon) < \hat{x} < x(1 + \epsilon)$
 
 $\qed$
 
-\end{document}
+\textbf{2. Complejidad algorítmica y cotas de rendimiento:} El tiempo de ejecución de un algoritmo de ordenamiento en el peor de los casos está modelado por una función $T(n)$, donde $n$ representa la cantidad de datos a procesar. Se ha determinado experimentalmente que el rendimiento real de este algoritmo satisface la condición:
+
+$\mid T(n) - c \times n^2 \mid \le k \times n$
+
+Donde $c$ y $k$ son constantes positivas que dependen de la arquitectura del procesador. Utilizar la \textbf{desigualdad triangular} para demostrar que el tiempo total de ejecución $T(n)$ está acotado superiormente por la función cuadrática:
+
+$T(n) \le c \times n^2 + k \times n$
+
+Se tiene la siguiente identidad:
+
+$T(n)  = (T(n) - c \times n^2) + c \times n^2$
+
+Se aplica \textbf{valor absoluto} en ambos lados de la igualdad:
+
+$\mid T(n) \mid  = \mid (T(n) - c \times n^2) + c \times n^2 \mid$
+
+Por \textbf{desigualdad triangular} se obtiene:
+
+$\mid (T(n) - c \times n^2) + c \times n^2 \mid \le \mid T(n) - c \times n^2 \mid + \mid c \times n^2 \mid$
+
+Entonces:
+
+$\mid T(n) \mid \le \mid T(n) - c \times n^2 \mid + \mid c \times n^2 \mid$
+
+Restar $\mid c \times n^2 \mid$ en la desigualdad actual:
+
+$\mid T(n) \mid - \mid c \times n^2 \mid \le \mid T(n) - c \times n^2 \mid + \mid c \times n^2 \mid - \mid c \times n^2 \mid \implies \mid T(n) \mid - \mid c \times n^2 \mid  \le \mid T(n) - c \times n^2 \mid$
+
+Como $\mid T(n) - c \times n^2 \mid \le k \times n$, por axioma de \textbf{transitividad} se tiene que:
+
+$\mid T(n) \mid - \mid c \times n^2 \mid \le k \times n$
+
+Es sabido que $c \times n^2 > 0$, además se supone que el tiempo de ejecución de un algoritmo es mayor que cero, por lo tanto, se tiene que:
+
+$T(n) - c \times n^2 \le k \times n \implies T(n) \le c \times n^2 + k \times n$
+
+$\qed$
+
+\textbf{3. Criterio de parada en algoritmos numéricos (convergencia):} Un script de programación implementa un método numérico iterativo para aproximar la raíz de una función. El criterio de parada dentro del bucle de control (while) exige que la aproximación actual $x_k$ y la aproximación del paso anterior $x_{k - 1}$ cumplan la condición de cercanía:
+
+$\mid x_k - x_{k - 1} \mid < \delta$
+
+Donde $\delta$ es la tolerancia de precisión del programa. Si en una iteración específica el algoritmo registra $x_{k - 1} = L$, demostrar analíticamente (usando las propiedades de intervalos abiertos para el valor absoluto) qué rango estricto de valores permitidos puede tomar $x_k$ para que el programa rompa el ciclo y finalice su ejecución con éxito. 
+
+\begin{nota_computacional}
+\underline{Nota:}
+
+La \textbf{raíz} de una función $f(x)$ es el valor de $x$ que hace que la función sea igual que cero. Matemáticamente:
+
+$f(x) = 0$
+
+El \textbf{método Newton-Raphson} es un algoritmo diseñado para encontrar raíces de funciones de forma numérica cuando no es fácil despejar la $x$. El algoritmo funciona de la siguiente manera:
+
+\begin{enumerate}
+    \item Se hace una estimación inicial $x_{k - 1}$.
+    \item El algoritmo calcula una nueva aproximación $x_k$, que debería estar más cerca de la raíz. Se usa la ecuación:
+    
+    $\displaystyle x_k = x_{k - 1} - \frac{f(x_{k - 1})}{f'(x_{k - 1})}$.
+
+    \item Se repite el proceso hasta que la diferencia sea menor a un nivel de tolerancia dado $\delta$:
+    
+    $\mid x_k - x_{k - 1} \mid < \delta$
+
+\end{enumerate}
+
+Por ejemplo, suponer la función $f(x) = x^2 - 2$, de la cual se sabe su raíz es $\sqrt{2} \approx 1.41421$.
+
+Además, la derivada de la función $f(x)$ es $f'(x) = 2x$.
+
+Se puede pensar en una primera estimación $x_{k - 1} = 1$.
+
+Se encuentra una nueva estimación (que debe estar más cerca a $\sqrt{2}$), mediante la ecuación:
+
+$\displaystyle x_k = 1 - \frac{(1)^2 - 2}{2(1)} = 1 + 0.5 = 1.5$.
+
+Calcular la diferencia entre estimaciones y compararla con un nivel de tolerancia $\delta = 0.01$:
+
+$\mid 1.5 - 1 \mid < 0.01 \implies 0.5 < 0.01$
+
+Como no se cumple, se procede a calcular una nueva estimación:
+
+$\displaystyle x_k = 1.5 - \frac{(1.5)^2 - 2}{2(1.5)} = 1.5 - \frac{1}{12} = \frac{17}{12} \approx 1.417$.
+
+Nuevamente, se compara la diferencia de estimaciones con $\delta$:
+
+$\mid \frac{17}{12} - 1.5 \mid < 0.01 \implies \frac{1}{12} \approx 0.083 < 0.01$
+
+De nuevo no cumple con la desigualdad, entonces, se vuelve a encontrar un nuevo estimador:
+
+$\displaystyle x_k = \frac{17}{12} - \frac{(\frac{17}{12})^2 - 2}{2(\frac{17}{12})} = \frac{17}{12} - \frac{1}{408} = \frac{577}{408} \approx 1.41422$
+
+Se compara la diferencia de estimaciones versus el nivel de tolerancia:
+
+$\mid \frac{577}{408} - \frac{17}{12}\mid < 0.01 \implies \frac{1}{408} \approx 0.0025 < 0.01$
+
+Se cumple la desigualdad, por lo tanto, se rompe la \textbf{iteración} y se puede concluir que la raíz de la función $f(x)$ aproximadamente $1.41422$, con un nivel de tolerancia del $1\%$.
+
+\end{nota_computacional}
+
+Dado $x_{k - 1} = L$ se tiene:
+
+$\mid x_k - L \mid < \delta$
+
+Por propiedad (4) de \textbf{valor absoluto} se tiene que:
+
+$\mid x_k - L \mid < \delta \implies -\delta < x_k - L <  \delta$
+
+Sumar $L$ en la desigualdad actual:
+
+$-\delta + L < (x_k - L) + L <  \delta + L$
+
+Por axioma de \textbf{inverso aditivo} y \textbf{conmutatividad} se obtiene:
+
+$L -\delta < x_k < L + \delta$
+
+Por lo tanto, para que la diferencia entre las estimaciones "rompa" con el bucle, dado un nivel de tolerancia $\delta$, debe estar en el rango $(L -\delta, L + \delta)$.
+
+$\qed$
+
+\textbf{4. Distancia de Hamming y transmisión de datos:} En la teoría de redes y comunicación de datos, la fidelidad de una señal suele modelarse  mediante distancias. Si se analiza un flujo unidimensional de bits donde $x$ representa la intensidad de la señal analógica recibida y $a$ es el umbral de sincronización ideal, un \textbf{bit erróneo (ruido)} se registra en el sistema cuando la señal se desvía demasiado:
+
+$\mid x - a \mid < \gamma$
+
+Donde $\gamma$ es la tolerancia máxima de ruido del canal físico. Descomponer formalmente esta condición en sus dos intervalos disjuntos de falla de datos, aplicando la propiedad de colas infinitas del valor absoluto.
+
+El escenario de falla de datos está dado por: $\mid x - a \mid > \gamma$.
+
+En otras palabras, cuando la diferencia entre la intensidad y el umbral es mayor que la tolerancia máxima $\gamma$.
+
+Por propiedad (5) de \textbf{valor absoluto} se tiene que:
+
+$\mid x - a \mid > \gamma \implies x - a > \gamma \ \lor \ x - a < -\gamma$
+
+Sumar $a$ en ambas desigualdades:
+
+$(x - a) + a > \gamma + a \ \lor \ (x - a) + a < - \gamma + a$
+
+Por propiedad \textbf{conmutativa} y \textbf{asociativa} se obtiene:
+
+$(a - a) + x > a + \gamma \ \lor \ (a - a) + x < a - \gamma$
+
+Por axioma de \textbf{inverso aditivo}:
+
+$x > a + \gamma \ \lor \ x < a - \gamma \implies (-\infty, a - \gamma) \cup (a + \gamma, +\infty)$
+
+$\qed$
+
+\textbf{5. Estabilidad en gráficos por computadora (Bounding boxes):} Un motor renderizado de videojuegos 2D evalúa si un personaje se encuentra dentro del rango de iluminación difusa de una antorcha situada exactamente en el origen 0. La condición matemática para que reciba luz en el eje horizontal exige que $\mid x \mid < R$, donde $R$ es el radio de alcance de la luz.
+
+Si una ráfaga de viento en el juego altera repentinamente la posición del personaje sumándole un factor de perturbación $\Delta x$, demostrar empleando la \textbf{desigualdad triangular} que el nuevo estado del personaje estará plenamente iluminado si el motor gráfico garantiza de antemano la siguiente condición:
+
+$\mid x \mid + \mid \Delta x \mid < R$
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1.2]
+    % Definición de estilos
+    \tikzstyle{axis}=[>=stealth, ->, thick, black]
+    \tikzstyle{lightzone}=[pattern=north west lines, pattern color=yellow!40, draw=yellow!60!orange, thick]
+    % Dibujo de la zona de iluminación (Radio R desde el origen)
+    % Representa el intervalo abierto (-R, R)
+    \fill[lightzone] (-4, -0.2) rectangle (4, 0.2);
+    \node[orange, below] at (0, -0.3) {Zona Iluminada (Radio $R$)};
+    % Eje horizontal (Eje X del mapa)
+    \draw[axis] (-5.5,0) -- (5.5,0) node[right] {$x$};
+    % Marcas del Radio R en el eje
+    \draw[thick] (4,0.1) -- (4,-0.1) node[below=3pt, font=\small] {$R$};
+    \draw[thick] (-4,0.1) -- (-4,-0.1) node[below=3pt, font=\small] {$-R$};
+    % El Origen (Posición de la Antorcha)
+    \filldraw[red] (0,0) circle (2.5pt);
+    \node[red, above=4pt, font=\small\bfseries] at (0,0) {Antorcha $(0)$};
+    % Posición original del personaje (x)
+    \coordinate (X) at (2.2, 0);
+    \filldraw[blue] (X) circle (2pt);
+    \node[blue, below=4pt, font=\small] at (X) {$x$};
+    % Nueva posición real del personaje (x + \Delta x)
+    \coordinate (Xnew) at (3.5, 0);
+    \filldraw[purple] (Xnew) circle (2pt);
+    \node[purple, below=4pt, font=\small\bfseries] at (Xnew) {$x + \Delta x$};
+    % Línea punteada que conecta la posición alterada al eje
+    \draw[dashed, purple] (3.5, 0.4) -- (3.5, 0);
+    % Cota de distancia de la Desigualdad Triangular
+    % Indica visualmente que |x| + |\Delta x| < R mantiene todo dentro de la zona sombreada
+    \draw[<->, >=stealth, gray, thin] (0, 0.8) -- (2.2, 0.8) node[midway, above, font=\scriptsize] {$\mid x \mid$};
+    \draw[<->, >=stealth, gray, thin] (2.2, 0.8) -- (3.5, 0.8) node[midway, above, font=\scriptsize] {$\mid \Delta x \mid$};
+    \draw[dashed, gray] (2.2, 0.4) -- (2.2, 0.8);
+    \draw[dashed, gray] (3.5, 0.4) -- (3.5, 0.8);
+\end{tikzpicture}
+\caption{Iluminación de personaje considerando factor de perturbación (viento).}
+\label{fig:bounding_box}
+\end{figure}
+
+La nueva distancia del personaje en relación al origen (antorcha) estaría dado por:
+
+$\mid x + \Delta x \mid$
+
+Por propiedad \textbf{desigualdad triangular} es sabido que:
+
+$\mid x + \Delta x \mid \le \mid x \mid + \mid \Delta x \mid$
+
+Como el motor gráfico garantiza que $\mid x \mid + \mid \Delta x \mid < R$, por \textbf{transitividad} se obtiene:
+
+$\mid x + \Delta x \mid < R$
+
+$\qed$
+
+\end{document} 
